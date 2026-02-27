@@ -1,5 +1,5 @@
 # TickMath
-[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/TickMath.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/libraries/TickMath.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Computes sqrt price for ticks of size 1.0001, i.e. sqrt(1.0001^tick) as fixed point Q64.96 numbers. Supports
 prices between 2**-128 and 2**128
@@ -118,7 +118,7 @@ function getSqrtPriceAtTick(int24 tick) internal pure returns (uint160 sqrtPrice
 
 ### getTickAtSqrtPrice
 
-Calculates the greatest tick value such that getSqrtPriceAtTick(tick) <= sqrtPriceX96
+Calculates the greatest tick value such that getSqrtPriceAtTick(tick) \<= sqrtPriceX96
 
 *Throws in case sqrtPriceX96 < MIN_SQRT_PRICE, as MIN_SQRT_PRICE is the lowest value getSqrtPriceAtTick may
 ever return.*

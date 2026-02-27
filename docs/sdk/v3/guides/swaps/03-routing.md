@@ -8,7 +8,7 @@ title: Routing a Swap
 This guide will cover how to use Uniswap's smart order router to compute optimal routes and execute swaps. Rather than trading between a single pool, smart routing may use multiple hops (as many as needed) to ensure that the end result of the swap is the optimal price. It is based on the [routing code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/routing), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/routing/README.md) and follow the setup instructions.
 
 :::info
-If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
+If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
 :::
 
 In this example we will trade between **WETH and USDC**, but you can configure your example to use any two currencies and amount of input currency.
@@ -19,7 +19,7 @@ The guide will **cover**:
 2. Creating a route
 3. Swapping using a route
 
-At the end of the guide, we should be able to create a route and and execute a swap between any two currencies tokens using the example's included UI.
+At the end of the guide, we should be able to create a route and execute a swap between any two currencies tokens using the example's included UI.
 
 For this guide, the following Uniswap packages are used:
 
@@ -94,16 +94,16 @@ Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `Trad
 import { CurrencyAmount, TradeType } from '@uniswap/sdk-core'
 
 const rawTokenAmountIn: JSBI = fromReadableAmount(
-      CurrentConfig.currencies.amountIn,
-      CurrentConfig.currencies.in.decimals
+      CurrentConfig.tokens.amountIn,
+      CurrentConfig.tokens.in.decimals
     )
 
 const route = await router.route(
   CurrencyAmount.fromRawAmount(
-    CurrentConfig.currencies.in,
+    CurrentConfig.tokens.in,
     rawTokenAmountIn
   ),
-  CurrentConfig.currencies.out,
+  CurrentConfig.tokens.out,
   TradeType.EXACT_INPUT,
   options
 )
@@ -159,7 +159,7 @@ const tokenApproval = await tokenContract.approve(
 To be able to spend the tokens of a wallet, a smart contract first needs to get an approval from that wallet. 
 ERC20 tokens have an `approve` function that accepts the address of the smart contract that we want to allow spending our tokens and the amount the smart contract should be allowed to spend.
 
-We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). 
+We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from the `SwapRouter02` field in [Deployments](../../../../contracts/v3/reference/deployments/deployments.md). 
 Keep in mind that different chains might have **different deployment addresses** for the same contracts.
 The deployment address for local forks of a network are the same as in the network you forked, so for a **fork of mainnet** it would be the address for **Mainnet**.
 

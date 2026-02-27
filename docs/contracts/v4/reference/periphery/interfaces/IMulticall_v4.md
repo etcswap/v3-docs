@@ -1,7 +1,7 @@
 # IMulticall_v4
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/IMulticall_v4.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/interfaces/IMulticall_v4.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
-Enables calling multiple methods in a single call to the contract
+Interface for the Multicall_v4 contract
 
 
 ## Functions
@@ -10,7 +10,7 @@ Enables calling multiple methods in a single call to the contract
 Call multiple functions in the current contract and return the data from all of them if they all succeed
 
 *The `msg.value` is passed onto all subcalls, even if a previous subcall has consumed the ether.
-Subcalls can instead use `address(this).value` to see the available ETH, and consume it using {value: x}.*
+Subcalls can instead use `address(this).value` to see the available ETH, and consume it using \{value: x\}.*
 
 
 ```solidity

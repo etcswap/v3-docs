@@ -3,8 +3,6 @@ sidebar_label: Uniswap V3 Staker Contract
 sidebar_position: 2
 ---
 
-# Uniswap V3 Staker Contract
-
 Below is the technical reference for the staker contract, [`UniswapV3Staker.sol`](https://github.com/Uniswap/uniswap-v3-staker/blob/main/contracts/UniswapV3Staker.sol). A technical guide for interacting with this staking contract will be released soon.
 
 ## Functions
@@ -104,7 +102,7 @@ Ends an incentive after the incentive end time has passed and all stakes have be
 Upon receiving a Uniswap V3 ERC721, creates the token deposit setting owner to `from`. Also stakes token
 in one or more incentives if properly formatted `data` has a length > 0.
 
-Whenever an {IERC721} `tokenId` token is transferred to this contract via {IERC721-safeTransferFrom}
+Whenever an \{IERC721\} `tokenId` token is transferred to this contract via \{IERC721-safeTransferFrom\}
 by `operator` from `from`, this function is called.
 It must return its Solidity selector to confirm the token transfer.
 If any other value is returned or the interface is not implemented by the recipient, the transfer will be reverted.
