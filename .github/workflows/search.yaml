@@ -9,9 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+      - name: Validate required secrets
+        run: |
+          if [ -z "${{ secrets.ALGOLIA_APP_ID }}" ]; then
+            echo "::error::ALGOLIA_APP_ID secret is not set. Please configure it in repository settings."
+            exit 1
+          fi
+          if [ -z "${{ secrets.ALGOLIA_API_KEY }}" ]; then
+            echo "::error::ALGOLIA_API_KEY secret is not set. Please configure it in repository settings."
+            exit 1
+          fi
       - name: Run Scraper
         run: |
           sudo apt-get update && sudo apt-get install -y jq
-          docker run -e "APPLICATION_ID=${{ secrets.ALGOLIA_APP_ID }}" -e "API_KEY=${{ secrets.API_KEY }}" -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
+          docker run -e "APPLICATION_ID=${{ secrets.ALGOLIA_APP_ID }}" -e "API_KEY=${{ secrets.ALGOLIA_API_KEY }}" -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
