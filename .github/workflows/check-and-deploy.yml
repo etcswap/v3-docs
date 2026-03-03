@@ -4,6 +4,8 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
+    branches-ignore:
+      - main
 
 jobs:
   check-uniswap-benchmarks:
@@ -13,11 +15,11 @@ jobs:
       run:
         working-directory: ./
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18.20.4
+          node-version: '20'
           cache: 'yarn'
           cache-dependency-path: yarn.lock
 
@@ -40,7 +42,7 @@ jobs:
   audit_with_lighthouse:
     name: Audit with Lighthouse
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/head/main' && github.ref != 'refs/heads/prod'
+    if: secrets.VERCEL_TOKEN != '' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/prod'
     permissions:
       contents: write
       pull-requests: write
@@ -68,7 +70,7 @@ jobs:
           timeout: 420
           poll-interval: 15
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Audit preview URL with Lighthouse (mobile)
         id: lighthouse_audit_mobile
         uses: treosh/lighthouse-ci-action@v9
@@ -90,7 +92,7 @@ jobs:
 
       - name: Format Lighthouse score
         id: format_lighthouse_score
-        uses: actions/github-script@v3
+        uses: actions/github-script@v7
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
