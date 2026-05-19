@@ -42,3 +42,16 @@ v4-sdk-baseline-assessment.md
 
 # Ignore external repositories
 v4-subgraph/
+
+# Claude Code working directory (local only)
+.claude/
+CLAUDE.md
+
+# Internal development directory
+.local/
+
+SESSION_NOTES.md
+PLANNING.md
+SCRATCH.md
+*.scratch.*
+*.draft.*
